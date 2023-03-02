@@ -42,3 +42,4 @@ def add_feeding(request, dog_id):
     new_feeding.dog_id = dog_id
     new_feeding.save()
   return redirect('detail', dog_id=dog_id)
+

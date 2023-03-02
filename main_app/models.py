@@ -5,7 +5,7 @@ from datetime import date
 MEALS = (
     ('B', 'Breakfast'),
     ('L', 'Lunch'),
-    ('D', 'Dinner')
+    ('D', 'Dinner'),
 )
 
 # Create your models here.
@@ -21,22 +21,18 @@ class Dog(models.Model):
   def get_absolute_url(self):
     return reverse('detail', kwargs={'dog_id': self.id})
   
+
 class Feeding(models.Model):
   date = models.DateField('feeding date')
-  meal = models.CharField(
-  max_length=1,
-  choices=MEALS,
-  default=MEALS[0][0]
-  )
-    
-dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
+  meal = models.CharField(max_length=1, choices=MEALS, default=MEALS[0][0])
 
-def __str__(self):
-  return f"{self.get_meal_display()} on {self.date}"
+  def __str__(self):
+   return f"{self.get_meal_display()} on {self.date}"
 
-class Meta:
-  ordering = ['-date']
+  class Meta:
+    ordering = ['-date']
 
-def fed_for_today(self):
-  return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
+  def fed_for_today(self):
+    return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
   
+dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
